@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noivei!</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="shortcut icon" href="../midias/Noiveiiconegrande-removebg-preview.png" type="image/">
+    <style>
+:root {
+    --cor1: #ab9bfd;
+    --cor2: #a9a0d4;
+    --cor3: #7c62fc;
+    --cor4: #4328c5;
+    --cor5:#4F3FB3;
+}
+        /* HERO COM IMAGEM DE FUNDO */
+
+.hero {
+    min-height: 90vh;
+    background: url("../midias/cerimonia-com-chuva-de-prata-e-verde-com-voil-nude-rustica-chique-casamento-ao-ar-livre-no-jardim-rj-rio-de-janeiro-barra-da-tijuca.jpg") center/cover no-repeat;
+    
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: start;
+    padding: 40px;
+
+    position: relative;
+}
+
+/* camada escura para destacar o texto */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* conteúdo acima da camada */
+.hero-content {
+    position: relative;
+    max-width: 600px;
+    color: white;
+    text-align: start;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    background: linear-gradient(45deg, var(--cor1), var(--cor4) );
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+.hero a{
+    margin: 0 3px;
+}
+/* botão */
+.hero .primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--cor1);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.hero .secondary{
+    display: inline-block;
+    padding: 11px 32px;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 3px solid var(--cor4);
+}
+.primary:hover {
+    background: var(--cor4);
+    transform: translateY(-3px);
+}
+.secondary:hover{
+    background: var(--cor4);
+}
+    </style>
+</head>
+<body>
+ <header>
+
+<div class="logo">
+<img src="../midias/Noivei2.png" alt="Logo">
+</div>
+
+<div class="menu-toggle" onclick="abrirMenu()">☰</div>
+
+<div class="menu-desktop">
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="lojas.html">Lojas</a></li>
+<li><a href="carrinho.html">Carrinho</a></li>
+</ul>
+
+<div class="search">
+<form action="">
+<input type="text" placeholder="Pesquisar...">
+<button>Pesquisar</button>
+</form>
+</div>
+
+<div class="perfil"></div>
+<a href="cadastro.html">Cadastro</a>
+</div>
+
+</header>
+    <main>
+        <section class="hero">
+            <aside class="hero-content">
+                <h1>Bem-Vindo ao <span>Noivei!</span></h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Ab sequi reiciendis cumque pariatur expedita!
+                </p>
+                <a href="lojas.html" class="primary">Explore</a>
+                <a href="perfil.html" class="secondary">Perfil</a>
+            </aside>
+        </section>
+        <section >
+
+        </section>
+    </main>
+    <footer>       
+        <section class="legal-notice">
+          <div class="legal-notice-wrapper">
+            <h2>Legal notice</h2>
+            <p>
+              We would like to inform you that this is an entirely independent site that does not request any type of payment for the approval or release of services. Although our editors continuously work to ensure the integrity and timeliness of the information, we emphasize that our content may become outdated at times. Additionally, regarding advertisements, we have partial control over what is displayed on our portal; therefore, we are not responsible for the services provided by third parties and offered through advertisements.
+            </p>
+          </div>
+        </section>
+        
+        <div class="footer-container">
+        
+              <div class="footer-menu">
+              <h4 class="footer-title">Navigation</h4>
+              <ul id="menu-links-uteis" class="footer-menu-items">
+        <li id="menu-item-1455" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1455"><a href="index.html">Home</a></li>
+        <li id="menu-item-292" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-292"><a href="carrinho.html">Carrinho</a></li>
+        <li id="menu-item-293" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-293"><a href="perfil.html">Perfil</a></li>
+        <li id="menu-item-294" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-294"><a href="lojas.html">Lojas</a></li>
+        </ul>    </div>
+          
+          
+              <div class="footer-menu">
+              <h4 class="footer-title">Social medias</h4>
+              <div class="social-icons">
+                          <a href="https://www.facebook.com/profile.php?id=61588224770104">
+                    <img src="https://gavsy.com/wp-content/themes/PauloTeste2/assets/faceicon.webp" alt="Facebook" loading="lazy">
+                  </a>
+                                  <a href="https://www.instagram.com/gavsy.site/?fbclid=IwY2xjawP5pJZleHRuA2FlbQIxMQBicmlkETFnS253QjJaeGhYN01qV0htc3J0YwZhcHBfaWQBMAABHiHT9Yn6hewcL_fvZjeYDQNyM2oY7U24ibQH2rNmYy06WEY3SQqSrRnxD2JD_aem_Utw-O4_ws-hi9Nvywof5pA">
+                    <img src="https://gavsy.com/wp-content/themes/PauloTeste2/assets/instaico.webp" alt="Instagram" loading="lazy">
+                  </a>
+                      </div>
+            </div>
+          
+        </div>
+        </footer>
+        <script>
+
+function abrirMenu(){
+
+const menu = document.querySelector(".menu-desktop");
+
+menu.classList.toggle("ativo");
+
+}
+
+</script>
+</body>
+</html>

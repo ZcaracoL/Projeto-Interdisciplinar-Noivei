@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../midias/Noiveiiconegrande-removebg-preview.png" type="image/">
+
+<title>Login</title>
+
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="footer.css">
+
+<style>
+:root {
+    --cor1: #ab9bfd;
+    --cor2: #a9a0d4;
+    --cor3: #7c62fc;
+    --cor4: #4328c5;
+    --cor5:#4F3FB3;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:linear-gradient(135deg,var(--cor1),var(--cor5));
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+/* MAIN */
+
+main{
+background:#f5f5f5;
+width:90%;
+max-width:1200px;
+margin:40px auto;
+border-radius:20px;
+display:flex;
+flex-direction:row;
+justify-content:space-evenly;
+align-items:center;
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+overflow:hidden;
+padding:40px;
+}
+
+/* LOGIN LOGO */
+
+.login-logo{
+width:40%;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-logo img{
+width:400px;
+opacity:.9;
+}
+
+/* FORMS */
+
+.forms{
+width:40%;
+position:relative;
+height:350px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.forms section{
+position:absolute;
+width:100%;
+background:white;
+padding:35px;
+border-radius:12px;
+display:flex;
+flex-direction:column;
+gap:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+transition:all .4s ease;
+}
+
+main h2{
+margin-bottom:5px;
+color:#333;
+}
+
+input{
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:14px;
+transition:.2s;
+}
+
+input:focus{
+outline:none;
+border-color:var(--cor1);
+box-shadow:0 0 0 2px rgba(30,143,62,0.15);
+}
+
+button{
+padding:12px;
+border:none;
+background:var(--cor1);
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+transition:.2s;
+}
+
+button:hover{
+background:var(--cor4);
+transform:translateY(-2px);
+}
+
+main p{
+font-size:13px;
+text-align:center;
+}
+
+main p span{
+color:var(--cor1);
+cursor:pointer;
+font-weight:bold;
+}
+
+main p span:hover{
+text-decoration:underline;
+}
+
+/* estados */
+
+.on{
+opacity:0;
+transform:translateX(40px);
+pointer-events:none;
+}
+
+.off{
+opacity:1;
+transform:translateX(0);
+pointer-events:auto;
+}
+
+/* RESPONSIVO */
+
+@media (max-width:950px){
+
+main{
+flex-direction:column;
+gap:30px;
+padding:30px 20px;
+}
+
+.login-logo{
+width:100%;
+}
+
+.login-logo img{
+width:250px;
+}
+
+.forms{
+width:80%;
+height:360px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="../midias/Noivei2.png" alt="Logo">
+</div>
+
+<div class="menu-toggle" onclick="abrirMenu()">☰</div>
+
+<div class="menu-desktop">
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="lojas.html">Lojas</a></li>
+<li><a href="carrinho.html">Carrinho</a></li>
+</ul>
+
+<div class="search">
+<form action="">
+<input type="text" placeholder="Pesquisar...">
+<button>Pesquisar</button>
+</form>
+</div>
+
+<div class="perfil"></div>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="login-logo">
+<img src="../midias/Noiveiiconegrande-removebg-preview.png" alt="User Icon">
+</section>
+
+<div class="forms">
+
+<section class="on">
+
+<h2>Create Account</h2>
+
+<input type="text" placeholder="Name">
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+
+<button>Register</button>
+
+<p>
+Already have an account?
+<span onclick="trocarForms()">Login</span>
+</p>
+
+</section>
+
+<section class="off">
+
+<h2>Login</h2>
+
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+
+<button>Login</button>
+
+<p>
+Don't have an account?
+<span onclick="trocarForms()">Register</span>
+</p>
+
+</section>
+
+</div>
+
+</main>
+
+<footer>
+
+<section class="legal-notice">
+<div class="legal-notice-wrapper">
+<h2>Legal notice</h2>
+<p>
+We would like to inform you that this is an entirely independent site that does not request any type of payment for the approval or release of services. Although our editors continuously work to ensure the integrity and timeliness of the information, we emphasize that our content may become outdated at times. Additionally, regarding advertisements, we have partial control over what is displayed on our portal; therefore, we are not responsible for the services provided by third parties and offered through advertisements.
+</p>
+</div>
+</section>
+
+<div class="footer-container">
+
+<div class="footer-menu">
+<h4 class="footer-title">Navigation</h4>
+<ul class="footer-menu-items">
+<li><a href="index.html">Home</a></li>
+<li><a href="carrinho.html">Carrinho</a></li>
+<li><a href="perfil.html">Perfil</a></li>
+<li><a href="lojas.html">Lojas</a></li>
+</ul>
+</div>
+
+<div class="footer-menu">
+<h4 class="footer-title">Social medias</h4>
+
+<div class="social-icons">
+
+<a href="https://www.facebook.com/profile.php?id=61588224770104">
+<img src="https://gavsy.com/wp-content/themes/PauloTeste2/assets/faceicon.webp" alt="Facebook">
+</a>
+
+<a href="https://www.instagram.com/gavsy.site/">
+<img src="https://gavsy.com/wp-content/themes/PauloTeste2/assets/instaico.webp" alt="Instagram">
+</a>
+
+</div>
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+function trocarForms(){
+
+const on = document.querySelector(".on");
+const off = document.querySelector(".off");
+
+on.classList.remove("on");
+on.classList.add("off");
+
+off.classList.remove("off");
+off.classList.add("on");
+
+}
+
+</script>
+<script>
+
+function abrirMenu(){
+
+const menu = document.querySelector(".menu-desktop");
+
+menu.classList.toggle("ativo");
+
+}
+
+</script>
+</body>
+</html>
