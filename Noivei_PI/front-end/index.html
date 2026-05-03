@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noivei!</title>
+    <title>Noivei! • Tudo para o seu Casamento</title>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="shortcut icon" href="../midias/Noiveiiconegrande-removebg-preview.png" type="image/">
@@ -15,91 +15,269 @@
     --cor4: #4328c5;
     --cor5:#4F3FB3;
 }
-        /* HERO COM IMAGEM DE FUNDO */
 
+/* HERO - Melhorado */
 .hero {
     min-height: 90vh;
-    background: url("../midias/cerimonia-com-chuva-de-prata-e-verde-com-voil-nude-rustica-chique-casamento-ao-ar-livre-no-jardim-rj-rio-de-janeiro-barra-da-tijuca.jpg") center/cover no-repeat;
-    
+    background: url("https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/100% auto no-repeat;
     display: flex;
     align-items: center;
     justify-content: start;
     text-align: start;
     padding: 40px;
-
     position: relative;
 }
 
-/* camada escura para destacar o texto */
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
 }
 
-/* conteúdo acima da camada */
 .hero-content {
     position: relative;
-    max-width: 600px;
+    max-width: 650px;
     color: white;
-    text-align: start;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
+    line-height: 1.1;
 }
 
 .hero h1 span {
-    background: linear-gradient(45deg, var(--cor1), var(--cor4) );
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
+    background: linear-gradient(45deg, var(--cor1), var(--cor4));
+    padding: 8px 16px;
+    border-radius: 8px;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-size: 1.35rem;
+    margin-bottom: 40px;
     line-height: 1.6;
 }
-.hero a{
-    margin: 0 3px;
+
+.hero .botoes {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
 }
-/* botão */
+
 .hero .primary {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 16px 36px;
     background: var(--cor1);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-weight: bold;
-    transition: 0.3s;
+    font-size: 1.15rem;
+    transition: 0.4s;
 }
-.hero .secondary{
+
+.hero .secondary {
     display: inline-block;
-    padding: 11px 32px;
+    padding: 15px 36px;
     background: transparent;
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-weight: bold;
-    transition: all 0.3s ease;
-    border: 3px solid var(--cor4);
+    font-size: 1.15rem;
+    border: 3px solid white;
+    transition: 0.4s;
 }
+
 .primary:hover {
     background: var(--cor4);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
 }
-.secondary:hover{
+
+.secondary:hover {
+    background: white;
+    color: var(--cor4);
+}
+
+/* ===================== NOVAS SEÇÕES ===================== */
+section {
+    padding: 100px 5%;
+}
+
+.titulo-secao {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 70px;
+    color: var(--cor4);
+}
+
+.titulo-secao span {
+    color: var(--cor3);
+}
+
+/* Categorias */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card-categoria {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+}
+
+.card-categoria:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(67, 40, 197, 0.18);
+}
+
+.card-categoria img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 28px;
+    text-align: center;
+}
+
+.card-info h3 {
+    color: var(--cor4);
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+}
+
+/* Fornecedores em Destaque */
+.destaques {
+    background: #f8f4ff;
+}
+
+.fornecedores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.card-fornecedor {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card-fornecedor:hover {
+    transform: translateY(-10px);
+}
+
+.card-fornecedor img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.info-fornecedor {
+    padding: 22px;
+}
+
+.info-fornecedor h3 {
+    margin-bottom: 8px;
+}
+
+/* Como Funciona */
+.passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+}
+
+.passo {
+    text-align: center;
+}
+
+.numero-passo {
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(var(--cor3), var(--cor4));
+    color: white;
+    font-size: 2.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    box-shadow: 0 10px 20px rgba(124, 98, 252, 0.3);
+}
+
+/* Depoimentos */
+.depoimentos {
+    background: linear-gradient(135deg, var(--cor5), var(--cor4));
+    color: white;
+}
+
+.depo-container {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 30px;
+    scroll-behavior: smooth;
+}
+
+.depo-card {
+    min-width: 380px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 35px;
+}
+
+/* Newsletter */
+.newsletter {
     background: var(--cor4);
+    color: white;
+    text-align: center;
+}
+
+.newsletter form {
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    font-size: 1.1rem;
+}
+
+.newsletter button {
+    padding: 18px 40px;
+    background: var(--cor1);
+    border: none;
+    border-radius: 0 50px 50px 0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    background: #9b7fff;
 }
     </style>
 </head>
 <body>
- <header>
 
+ <header>
 <div class="logo">
 <img src="../midias/Noivei2.png" alt="Logo">
 </div>
@@ -107,7 +285,6 @@
 <div class="menu-toggle" onclick="abrirMenu()">☰</div>
 
 <div class="menu-desktop">
-
 <ul>
 <li><a href="index.html">Home</a></li>
 <li><a href="lojas.html">Lojas</a></li>
@@ -126,22 +303,139 @@
 </div>
 
 </header>
+
     <main>
+        <!-- HERO -->
         <section class="hero">
             <aside class="hero-content">
                 <h1>Bem-Vindo ao <span>Noivei!</span></h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Ab sequi reiciendis cumque pariatur expedita!
+                    O lugar perfeito para noivos encontrarem tudo que precisam para o grande dia. 
+                    Fornecedores de confiança, ideias incríveis e organização facilitada.
                 </p>
-                <a href="lojas.html" class="primary">Explore</a>
-                <a href="perfil.html" class="secondary">Perfil</a>
+                <div class="botoes">
+                    <a href="lojas.html" class="primary">Explorar Fornecedores</a>
+                    <a href="perfil.html" class="secondary">Criar Minha Lista</a>
+                </div>
             </aside>
         </section>
-        <section >
 
+        <!-- CATEGORIAS -->
+        <section>
+            <h2 class="titulo-secao">O que você está procurando?</h2>
+            <div class="categorias">
+                <div class="card-categoria">
+                    <img src="https://plus.unsplash.com/premium_photo-1768418698667-db5163089c5c?q=80&w=389&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vestidos">
+                    <div class="card-info">
+                        <h3>Trajes e Vestidos</h3>
+                        <p>Modelos únicos dos melhores ateliers</p>
+                    </div>
+                </div>
+                <div class="card-categoria">
+                    <img src="https://plus.unsplash.com/premium_photo-1664530452329-42682d3a73a7?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Salões">
+                    <div class="card-info">
+                        <h3>Salões & Espaços</h3>
+                        <p>Cerimônias inesquecíveis</p>
+                    </div>
+                </div>
+                <div class="card-categoria">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fotos">
+                    <div class="card-info">
+                        <h3>Fotografia & Vídeo</h3>
+                        <p>Eternize cada momento</p>
+                    </div>
+                </div>
+                <div class="card-categoria">
+                    <img src="https://images.unsplash.com/photo-1576842546422-60562b9242ae?q=80&w=858&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Buffet">
+                    <div class="card-info">
+                        <h3>Buffet & Gastronomia</h3>
+                        <p>Sabores que encantam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESTAQUES -->
+        <section class="destaques">
+            <h2 class="titulo-secao">Fornecedores em <span>Destaque</span></h2>
+            <div class="fornecedores">
+                <div class="card-fornecedor">
+                    <img src="https://plus.unsplash.com/premium_photo-1668439991057-7e70186ea56b?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <div class="info-fornecedor">
+                        <h3>Atelier Dreams</h3>
+                        <p>Rio de Janeiro, RJ • 5.0 ★</p>
+                    </div>
+                </div>
+                <div class="card-fornecedor">
+<img src="https://images.unsplash.com/photo-1670529776180-60e4132ab90c?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jardim Secreto">                    <div class="info-fornecedor">
+                        <h3>Jardim Secreto</h3>
+                        <p>Petrópolis, RJ • 4.9 ★</p>
+                    </div>
+                </div>
+                <div class="card-fornecedor">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="">
+                    <div class="info-fornecedor">
+                        <h3>Luz & Memórias</h3>
+                        <p>São Paulo, SP • 5.0 ★</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA -->
+        <section>
+            <h2 class="titulo-secao">Como funciona?</h2>
+            <div class="passos">
+                <div class="passo">
+                    <div class="numero-passo">1</div>
+                    <h3>Crie sua conta</h3>
+                    <p>Grátis e rápido</p>
+                </div>
+                <div class="passo">
+                    <div class="numero-passo">2</div>
+                    <h3>Descubra fornecedores</h3>
+                    <p>Filtre por localização e estilo</p>
+                </div>
+                <div class="passo">
+                    <div class="numero-passo">3</div>
+                    <h3>Monte sua lista</h3>
+                    <p>Salve seus favoritos</p>
+                </div>
+                <div class="passo">
+                    <div class="numero-passo">4</div>
+                    <h3>Realize o sonho</h3>
+                    <p>Organize tudo em um lugar só</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEPOIMENTOS -->
+        <section class="depoimentos">
+            <h2 class="titulo-secao" style="color: white;">Depoimentos de Noivas</h2>
+            <div class="depo-container">
+                <div class="depo-card">
+                    <p>"Consegui encontrar meu vestido e o salão ideal em poucos dias. Recomendo demais!"</p>
+                    <br><strong>— Laura Mendes, RJ</strong>
+                </div>
+                <div class="depo-card">
+                    <p>"Plataforma incrível! Todos os fornecedores são de confiança e muito profissionais."</p>
+                    <br><strong>— Beatriz & Rafael, SP</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter">
+            <h2>Fique por dentro das novidades</h2>
+            <p style="margin: 20px 0 30px;">Tendências, dicas e promoções exclusivas para seu casamento</p>
+            <form>
+                <input type="email" placeholder="Seu e-mail" required>
+                <button type="submit">Inscrever</button>
+            </form>
         </section>
     </main>
+
+    <!-- === FOOTER ORIGINAL (mantido exatamente como você enviou) === -->
     <footer>       
         <section class="legal-notice">
           <div class="legal-notice-wrapper">
@@ -178,16 +472,12 @@
           
         </div>
         </footer>
+
         <script>
-
-function abrirMenu(){
-
-const menu = document.querySelector(".menu-desktop");
-
-menu.classList.toggle("ativo");
-
-}
-
-</script>
+        function abrirMenu(){
+            const menu = document.querySelector(".menu-desktop");
+            menu.classList.toggle("ativo");
+        }
+        </script>
 </body>
 </html>
