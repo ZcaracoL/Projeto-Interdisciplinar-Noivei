@@ -1,0 +1,41 @@
+APIs de conexão sugeridas para o backend:
+
+1) /api/auth/register
+- método POST
+- cria usuário novo
+- campo tipo: cliente ou fornecedor
+- se for fornecedor, pode gravar dados iniciais de loja no futuro
+
+2) /api/auth/login
+- método POST
+- recebe email e senha
+- retorna token ou sessão simulada
+
+3) /api/fornecedores
+- método GET
+- retorna lista de fornecedores para o cliente ver
+
+4) /api/fornecedores/:id
+- método GET
+- retorna detalhes da loja + planos do fornecedor
+
+5) /api/fornecedores/:id/planos
+- método POST (fornecedor)
+- cria novo plano para a loja
+- método PUT (fornecedor)
+- atualiza plano existente
+- método DELETE (fornecedor)
+- exclui plano
+
+6) /api/fornecedores/:id/perfil
+- método PUT (fornecedor)
+- atualiza nome da loja, descrição, foto, contato
+
+7) /api/usuarios/:id
+- método GET
+- retorna dados do usuário logado ou perfil básico
+
+Notas:
+- verificação de dono deve existir nas rotas de edição.
+- só fornecedor logado pode editar perfil/planos.
+- cliente e não logado só podem ler lista e detalhes.

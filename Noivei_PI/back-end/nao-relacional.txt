@@ -1,0 +1,33 @@
+Estrutura sugerida para banco não relacional (NoSQL):
+
+1) usuarios
+- _id
+- nome
+- email
+- senha
+- telefone
+- tipo: cliente ou fornecedor
+- criadoEm
+
+2) fornecedores
+- _id
+- usuarioId
+- nomeLoja
+- descricao
+- fotoUrl
+- contatoEmail
+- planos: [
+    { titulo, descricao, preco, criadoEm }
+  ]
+- criadoEm
+
+3) logs ou atividades (opcional)
+- _id
+- usuarioId
+- acao
+- data
+
+Obs:
+- no NoSQL, o documento de fornecedor pode já guardar os planos dentro do mesmo documento.
+- não precisa criar tabela de relacionamento se usar documento embutido.
+- função principal é guardar dados de fornecedor e planos juntos para leitura mais fácil.

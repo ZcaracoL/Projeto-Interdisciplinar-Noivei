@@ -34,7 +34,21 @@ header{
 .menu-desktop{
     display:flex;
     align-items:center;
-    gap:25px;
+    gap:16px;
+}
+
+.menu-desktop .shortcut{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:6px;
+    color:#333;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.menu-desktop .shortcut:hover{
+    background: rgba(124,98,252,0.08);
+    color: var(--cor4);
 }
 
 .menu-desktop ul{
@@ -85,10 +99,26 @@ header{
 /* perfil */
 
 .perfil{
-    width: 35px;
+    min-width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-color: transparent;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.perfil a{
+    color:#333;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.perfil div{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#bbb;
 }
 
 /* botão hamburguer */
@@ -169,7 +199,7 @@ header{
 /* busca */
 
 .search{
-    width:60%;
+    width:100%;
     margin: 0 auto;
     padding:10px 15px;
 }
