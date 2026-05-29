@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./header.css";
+import Noivei2 from "../assets/midias/Noivei2.png";
 
 export default function Header() {
 const [menuAberto, setMenuAberto] = useState(false);
 
-return ( <header> <div className="logo"> <Link to="/"> <img src="../assets/midias/Noivei2.png" alt="Logo" /> </Link> </div>
+return ( <header> <div className="logo"> <Link to="/"> <img src={ Noivei2 } alt="Logo" /> </Link> </div>
 
   <div
     className="menu-toggle"

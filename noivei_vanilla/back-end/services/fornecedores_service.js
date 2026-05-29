@@ -6,11 +6,11 @@ export async function criarFornecedor({ nomeLoja, descricao, fotoUrl, contatoEma
 }
 
 export async function listarFornecedores() {
-    return await Fornecedro.find({});
+    return await Fornecedor.find({}).populate("planos");
 }
 
 export async function obterFornecedorPorId(id) {
-    return await Fornecedor.find({ _id : id });
+    return await Fornecedor.find({ _id : id }).populate("planos");
 }
 
 export async function alterarFornecedor(fornecedorId, { nomeLoja, descricao, fotoUrl, contatoEmail, planos }) {

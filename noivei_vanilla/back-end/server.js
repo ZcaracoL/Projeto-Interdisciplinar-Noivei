@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { conectarBancoMongo } from "./database/conexao.js";
 import Database from "better-sqlite3";
-import "dotenv/config";
+//import "dotenv/config";
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(express.json());
 export { app };
 
 app.get("/", (req, res) => {
-    res.send("Endpoints desta API são /api/fornecedores");
+    res.send("Endpoints desta API são /api/");
 });
 
 try {
@@ -85,8 +85,8 @@ try {
     //console.log(usuarios);
 
     const porta_API = process.env.PORTA_API;
-    app.listen(porta_API);
-    console.log(`Servidor rodando na porta ${porta_API}`);
+    app.listen(porta_API || 3000);
+    console.log(`Servidor rodando!`);
 } catch (erro) {
     console.error("Erro ao conectar ao banco de dados:", erro.message);
 }

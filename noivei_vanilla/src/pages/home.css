@@ -1,0 +1,265 @@
+:root {
+    --cor1: #ab9bfd;
+    --cor2: #a9a0d4;
+    --cor3: #7c62fc;
+    --cor4: #4328c5;
+    --cor5:#4F3FB3;
+}
+
+/* HERO - Melhorado */
+.hero {
+    min-height: 90vh;
+    background: url("https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/100% auto no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: start;
+    padding: 40px;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.hero-content {
+    position: relative;
+    max-width: 650px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    background: linear-gradient(45deg, var(--cor1), var(--cor4));
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.hero p {
+    font-size: 1.35rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero .botoes {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.hero .primary {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--cor1);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    transition: 0.4s;
+}
+
+.hero .secondary {
+    display: inline-block;
+    padding: 15px 36px;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    border: 3px solid white;
+    transition: 0.4s;
+}
+
+.primary:hover {
+    background: var(--cor4);
+    transform: translateY(-5px);
+}
+
+.secondary:hover {
+    background: white;
+    color: var(--cor4);
+}
+
+/* ===================== NOVAS SEÇÕES ===================== */
+section {
+    padding: 100px 5%;
+}
+
+.titulo-secao {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 70px;
+    color: var(--cor4);
+}
+
+.titulo-secao span {
+    color: var(--cor3);
+}
+
+/* Categorias */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card-categoria {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+}
+
+.card-categoria:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(67, 40, 197, 0.18);
+}
+
+.card-categoria img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 28px;
+    text-align: center;
+}
+
+.card-info h3 {
+    color: var(--cor4);
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+}
+
+/* Fornecedores em Destaque */
+.destaques {
+    background: #f8f4ff;
+}
+
+.fornecedores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.card-fornecedor {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card-fornecedor:hover {
+    transform: translateY(-10px);
+}
+
+.card-fornecedor img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.info-fornecedor {
+    padding: 22px;
+}
+
+.info-fornecedor h3 {
+    margin-bottom: 8px;
+}
+
+/* Como Funciona */
+.passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+}
+
+.passo {
+    text-align: center;
+}
+
+.numero-passo {
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(var(--cor3), var(--cor4));
+    color: white;
+    font-size: 2.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    box-shadow: 0 10px 20px rgba(124, 98, 252, 0.3);
+}
+
+/* Depoimentos */
+.depoimentos {
+    background: linear-gradient(135deg, var(--cor5), var(--cor4));
+    color: white;
+}
+
+.depo-container {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 30px;
+    scroll-behavior: smooth;
+}
+
+.depo-card {
+    min-width: 380px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 35px;
+}
+
+/* Newsletter */
+.newsletter {
+    background: var(--cor4);
+    color: white;
+    text-align: center;
+}
+
+.newsletter form {
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    font-size: 1.1rem;
+}
+
+.newsletter button {
+    padding: 18px 40px;
+    background: var(--cor1);
+    border: none;
+    border-radius: 0 50px 50px 0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    background: #9b7fff;
+}

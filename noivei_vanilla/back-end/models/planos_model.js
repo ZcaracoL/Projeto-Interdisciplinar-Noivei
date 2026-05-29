@@ -10,4 +10,4 @@ export const planoSchema = new Schema({
     }
 });
 
-export const Plano = mongoose.model("Plano", planoSchema);
+export const Plano = mongoose.model("Plano", planoSchema, "planos");

@@ -6,7 +6,12 @@ export const fornecedorSchema = new Schema({
     descricao: String,
     fotoUrl: String,
     contatoEmail: String,
-    planos: planoSchema,
+    planos: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Plano"
+        }
+    ],
     criadoEm: {
         type: Date,
         default: Date.now
