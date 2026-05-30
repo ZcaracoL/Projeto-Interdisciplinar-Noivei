@@ -3,29 +3,30 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import { Link } from "react-router-dom";
 import api from "../services/api"; // Importando sua configuração do Axios
-import "./home.css"; // Certifique-se de ter ou criar este arquivo para os estilos
+import "./home.css"; 
 
 export default function Home() {
-  const [lojas, setLojas] = useState([]);
+  const [fornecedores, setFornecedores] = useState([]);
 
-  // Buscar as lojas do banco de dados quando a página carregar
+  // Buscar os fornecedores do banco de dados quando a página carregar
   useEffect(() => {
-    async function carregarLojas() {
+    async function carregarFornecedores() {
       try {
+        // Consome a rota que configuramos no back-end buscando da coleção de fornecedores
         const response = await api.get("/lojas");
-        setLojas(response.data);
+        setFornecedores(response.data);
       } catch (error) {
-        console.error("Erro ao carregar lojas:", error);
+        console.error("Erro ao carregar fornecedores:", error);
       }
     }
-    carregarLojas();
+    carregarFornecedores();
   }, []);
 
   return (
     <>
       <Header />
       <main>
-        {/* Seção Hero existente */}
+        {/* Seção Hero */}
         <section className="hero">
           <aside className="hero-content">
             <h1>
@@ -38,32 +39,35 @@ export default function Home() {
               <Link to="/lojas" className="primary">
                 Explorar Fornecedores
               </Link>
-              <Link to="/perfil" className="secondary">
-                Criar Minha Lista
+              {/* Direciona para o cadastro/login antes de acessar o perfil */}
+              <Link to="/cadastro" className="secondary">
+                Página do anunciante
               </Link>
             </div>
           </aside>
         </section>
 
-        {/* NOVA SEÇÃO: Cards de Lojas Disponíveis */}
+        {/* Cards de Fornecedores Disponíveis */}
         <section className="lojas-destaque">
-          <h2>Conheça nossas Lojas Disponíveis</h2>
+          <h2>Conheça nossos Fornecedores Disponíveis</h2>
           
           <div className="cards-container">
-            {lojas.length === 0 ? (
-              <p>Carregando lojas...</p>
+            {fornecedores.length === 0 ? (
+              <p>Carregando fornecedores...</p>
             ) : (
-              lojas.map((loja) => (
-                <div className="loja-card" key={loja._id}>
+              fornecedores.map((fornecedor) => (
+                <div className="loja-card" key={fornecedor._id}>
                   <div className="loja-imagem">
-                    <img src={loja.imagem} alt={loja.nomeLoja} />
-                    <span className="loja-categoria">{loja.categoria}</span>
+                    <img src={fornecedor.imagem} alt={fornecedor.nomeLoja} />
+                    <span className="loja-categoria">{fornecedor.categoria}</span>
                   </div>
                   <div className="loja-info">
-                    <h3>{loja.nomeLoja}</h3>
-                    <p className="loja-cidade">📍 {loja.cidade}</p>
-                    <p className="loja-descricao">{loja.descricao}</p>
-                    <Link to={`/loja/${loja._id}`} className="btn-ver-mais">
+                    <h3>{fornecedor.nomeLoja}</h3>
+                    <p className="loja-cidade">📍 {fornecedor.cidade}</p>
+                    <p className="loja-descricao">{fornecedor.descricao}</p>
+                    
+                    {/* Botão que abre a tela dinâmica DetalheLoja passando o ID */}
+                    <Link to={`/loja/${fornecedor._id}`} className="btn-ver-mais">
                       Ver Detalhes e Planos
                     </Link>
                   </div>

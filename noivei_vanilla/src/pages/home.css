@@ -148,12 +148,6 @@ section {
     background: #f8f4ff;
 }
 
-.fornecedores {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-}
-
 .card-fornecedor {
     background: white;
     border-radius: 18px;
@@ -166,16 +160,19 @@ section {
     transform: translateY(-10px);
 }
 
+/* ALTERAÇÃO: Diminuída a altura da foto de 210px para 160px */
 .card-fornecedor img {
     width: 100%;
-    height: 210px;
+    height: 160px; 
+    object-fit: cover; /* Garante que a imagem não fique esticada ou amassada */
+}
+
+/* Caso você tenha mantido as classes antigas .loja-card e .loja-imagem no HTML da Home: */
+.loja-card img, .loja-imagem img {
+    width: 100%;
+    height: 160px;
     object-fit: cover;
 }
-
-.info-fornecedor {
-    padding: 22px;
-}
-
 .info-fornecedor h3 {
     margin-bottom: 8px;
 }
