@@ -5,6 +5,8 @@ import Cadastro from "./pages/cadastro";
 import Perfil from "./pages/perfil";
 import Lojas from "./pages/Lojas"; 
 import DetalheLoja from "./pages/DetalheLoja";
+import Coracoes from "./pages/coracaopage";
+import AdminCoracoes from "./pages/adminCoracoes";
 
 export default function App() {
   return (
@@ -32,6 +34,16 @@ export default function App() {
         <Route
           path="/loja/:id"
           element={<DetalheLoja />}
+        />
+
+        <Route
+          path="/coracoes"
+          element={<Coracoes />}
+        />
+
+        <Route
+          path="/admincoracoes"
+          element={<AdminCoracoes />}
         />
       </Routes>
     </BrowserRouter>

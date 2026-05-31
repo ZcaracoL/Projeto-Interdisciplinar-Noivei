@@ -4,6 +4,7 @@ import { conectarBancoMongo } from "./database/conexao.js";
 
 // Importa apenas a rota unificada de fornecedores
 import { rotasFornecedores } from "./routes/fornecedores_route.js"; 
+import { rotasCoracoes } from "./routes/coracoes.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 
 rotasFornecedores(app);
+rotasCoracoes(app);
 
 app.get("/", (req, res) => {
     res.send("Endpoints desta API são /api/");
@@ -32,9 +34,9 @@ app.use((err, req, res, next) => {
 try {
     await conectarBancoMongo();
 
-    const porta_API = process.env.PORTA_API;
-    app.listen(porta_API || 3000, () => {
-        console.log(`Servidor rodando na porta ${porta_API || 3000}!`);
+    const porta_API = process.env.PORTA_API || 5000;
+    app.listen(porta_API, () => {
+        console.log(`Servidor rodando na porta ${porta_API}!`);
     });
     
 } catch (erro) {

@@ -9,6 +9,7 @@ export default function Lojas() {
   const [fornecedores, setFornecedores] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [termoBusca, setTermoBusca] = useState("");
   const itensPorPagina = 12;
 
   useEffect(() => {
@@ -25,14 +26,37 @@ export default function Lojas() {
     obterFornecedores();
   }, []);
 
+  // Filtrar fornecedores baseado no termo de busca
+  const fornecedoresFiltrados = fornecedores.filter(fornecedor => {
+    if (!termoBusca) return true;
+    
+    const termo = termoBusca.toLowerCase().trim();
+    return (
+      fornecedor.nomeLoja?.toLowerCase().includes(termo) ||
+      fornecedor.categoria?.toLowerCase().includes(termo) ||
+      fornecedor.cidade?.toLowerCase().includes(termo) ||
+      fornecedor.descricao?.toLowerCase().includes(termo)
+    );
+  });
+
   const ultimoIndex = paginaAtual * itensPorPagina;
   const primeiroIndex = ultimoIndex - itensPorPagina;
-  const fornecedoresAtuais = fornecedores.slice(primeiroIndex, ultimoIndex);
-  const totalPaginas = Math.ceil(fornecedores.length / itensPorPagina);
+  const fornecedoresAtuais = fornecedoresFiltrados.slice(primeiroIndex, ultimoIndex);
+  const totalPaginas = Math.ceil(fornecedoresFiltrados.length / itensPorPagina);
 
   const irParaPagina = (numero) => {
     setPaginaAtual(numero);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleBusca = (e) => {
+    setTermoBusca(e.target.value);
+    setPaginaAtual(1); // Resetar para primeira página ao buscar
+  };
+
+  const limparBusca = () => {
+    setTermoBusca("");
+    setPaginaAtual(1);
   };
 
   return (
@@ -46,10 +70,49 @@ export default function Lojas() {
             <p>Encontre os melhores profissionais para o seu grande dia!</p>
           </div>
 
+          {/* Barra de Pesquisa */}
+          <div className="barra-pesquisa-container">
+            <div className="barra-pesquisa">
+              <div className="pesquisa-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <input
+                type="text"
+                placeholder="Busque por nome da loja, categoria, cidade..."
+                value={termoBusca}
+                onChange={handleBusca}
+                className="pesquisa-input"
+              />
+              {termoBusca && (
+                <button onClick={limparBusca} className="limpar-busca">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Resultados da busca */}
+          {!carregando && termoBusca && (
+            <div className="resultados-busca">
+              <p>
+                🔍 Encontramos <strong>{fornecedoresFiltrados.length}</strong> resultado(s) para "<strong>{termoBusca}</strong>"
+              </p>
+            </div>
+          )}
+
           {carregando ? (
             <div className="carregando">Carregando fornecedores...</div>
-          ) : fornecedores.length === 0 ? (
-            <div className="vazio">Nenhum fornecedor encontrado.</div>
+          ) : fornecedoresFiltrados.length === 0 ? (
+            <div className="vazio">
+              <p>😕 Nenhum fornecedor encontrado para "{termoBusca}"</p>
+              <button onClick={limparBusca} className="botao-secundario">
+                Limpar busca
+              </button>
+            </div>
           ) : (
             <>
               <div className="grid-lojas">

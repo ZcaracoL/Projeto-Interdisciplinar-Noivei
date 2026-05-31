@@ -341,3 +341,140 @@
     margin-bottom: 10px;
   }
 }
+/* Barra de Pesquisa */
+.barra-pesquisa-container {
+  margin: 2rem 0 1.5rem;
+}
+
+.barra-pesquisa {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pesquisa-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+}
+
+.pesquisa-input {
+  width: 100%;
+  padding: 14px 45px 14px 45px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  background: white;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.pesquisa-input:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.limpar-busca {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.limpar-busca:hover {
+  color: #ff6b6b;
+}
+
+/* Resultados da busca */
+.resultados-busca {
+  text-align: center;
+  margin: 1rem 0 2rem;
+  padding: 0.75rem;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  color: #4a5568;
+  font-size: 0.95rem;
+}
+
+.resultados-busca strong {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Estado vazio */
+.vazio {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.vazio p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.botao-secundario {
+  background: transparent;
+  border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao-secundario:hover {
+  background: #ff6b6b;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .barra-pesquisa {
+    max-width: 100%;
+    margin: 0 1rem;
+  }
+  
+  .pesquisa-input {
+    font-size: 0.9rem;
+    padding: 12px 40px 12px 40px;
+  }
+  
+  .resultados-busca {
+    font-size: 0.85rem;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pesquisa-input {
+    font-size: 0.85rem;
+    padding: 10px 35px 10px 35px;
+  }
+  
+  .vazio {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .vazio p {
+    font-size: 1rem;
+  }
+}

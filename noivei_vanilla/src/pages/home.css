@@ -41,7 +41,10 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: white;
+    color: var(--cor3);
+    background: rgb(255, 255, 255);
+    padding: 4px 12px;  
+    border-radius: 50px;
     margin-bottom: 16px;
 }
 
@@ -58,7 +61,7 @@ body {
     margin: 0 auto;
 }
 
-.gradient-text {
+.x2gradient-text {
     background: var(--gradient-primary);
     color: white;
     padding: 4px 12px;

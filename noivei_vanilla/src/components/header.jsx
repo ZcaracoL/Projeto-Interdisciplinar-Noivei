@@ -29,6 +29,9 @@ export default function Header() {
         <Link to="/lojas" className="shortcut" onClick={fecharMenu}>
           Lojas
         </Link>
+        <Link to="/coracoes" className="shortcut" onClick={fecharMenu}>
+          Corações
+        </Link>
       </nav>
     </header>
   );
