@@ -1,221 +1,126 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 :root {
-    --cor1: #ab9bfd;
-    --cor2: #a9a0d4;
-    --cor3: #7c62fc;
-    --cor4: #4328c5;
-    --cor5:#4F3FB3;
+  --cor1: #ab9bfd;
+  --cor2: #a9a0d4;
+  --cor3: #7c62fc;
+  --cor4: #4328c5;
+  --cor5: #4f3fb3;
 }
-header{
+
+#headerunica {
+  width: 100%;
+  height: 70px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.logo img {
+  height: 36px;
+  display: block;
+}
+
+.menu-desktop {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.menu-desktop .shortcut {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #1a1a2e;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.menu-desktop .shortcut:hover {
+  background: rgba(124, 98, 252, 0.1);
+  color: var(--cor4);
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cor1), var(--cor3));
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--cor4);
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.menu-toggle:hover {
+  background: rgba(67, 40, 197, 0.08);
+}
+
+@media (max-width: 900px) {
+  #headerunica {
+    height: auto;
+    padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-desktop {
     width: 100%;
-    height: 50px;
-    background-color: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+    margin-top: 16px;
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+  }
+
+  .menu-desktop.ativo {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+  }
 
-/* logo */
+  .menu-desktop .shortcut {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
 
-.logo img{
-    height: 30px;
-}
+  .menu-desktop .shortcut:hover {
+    background: rgba(124, 98, 252, 0.08);
+  }
 
-/* menu */
-
-.menu-desktop{
-    display:flex;
-    align-items:center;
-    gap:16px;
-}
-
-.menu-desktop .shortcut{
-    display:inline-block;
-    padding:6px 10px;
-    border-radius:6px;
-    color:#333;
-    text-decoration:none;
-    font-weight:600;
-}
-
-.menu-desktop .shortcut:hover{
-    background: rgba(124,98,252,0.08);
-    color: var(--cor4);
-}
-
-.menu-desktop ul{
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-.menu-desktop a{
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.menu-desktop a:hover{
-    color: var(--cor1);
-}
-
-/* barra de pesquisa */
-
-.search form{
-    display: flex;
-}
-
-.search input{
-    padding: 8px 15px;
-    border-radius: 20px 0 0 20px;
-    border: 1px solid #ccc;
-    outline: none;
-}
-
-.search button{
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-left: none;
-    border-radius: 0 20px 20px 0;
-    background-color: var(--cor1);
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.search button:hover{
-    background-color: var(--cor3);
-}
-
-/* perfil */
-
-.perfil{
-    min-width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: transparent;
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.perfil a{
-    color:#333;
-    text-decoration:none;
-    font-weight:600;
-}
-
-.perfil div{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    background:#bbb;
-}
-
-/* botão hamburguer */
-
-.menu-toggle{
-    display:none;
-    font-size:28px;
-    cursor:pointer;
-}
-
-/* RESPONSIVO */
-
-@media (max-width:900px){
-
-header{
-    flex-wrap:wrap;
-    height:auto;
-    padding-bottom: 10px;
-}
-
-/* botão hamburguer */
-
-.menu-toggle{
-    display:block;
-    font-size:28px;
-    cursor:pointer;
-    color:var(--cor1);
-}
-
-/* menu mobile */
-
-.menu-desktop{
-    width:100%;
-    flex-direction:column;
-    align-items:flex-start;
-    display:none;
-    background:#fff;
-    border-radius:8px;
-    margin-top:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
-    overflow:hidden;
-}
-
-/* menu aberto */
-
-.menu-desktop.ativo{
-    display:flex;
-}
-
-/* lista */
-
-.menu-desktop ul{
-    flex-direction:column;
-    width:100%;
-    padding: 5px;
-    gap: 5px;
-
-}
-
-/* links */
-
-.menu-desktop a{
-    width:100%;
-        border-radius: 5px;
-    padding:12px 15px;
-    border-bottom:1px solid var(--cor1);
-    transition:0.3s;
-    display: inline-block;
-}
-
-/* hover */
-
-.menu-desktop a:hover{
-    background:var(--cor1);
-    color:white;
-}
-
-/* busca */
-
-.search{
-    width:100%;
-    margin: 0 auto;
-    padding:10px 15px;
-}
-
-.search form{
-    width:100%;
-}
-
-.search input{
-    width:100%;
-}
-
-/* perfil */
-
-.perfil{
-    margin:10px 15px 15px 15px;
-}
-
+  .perfil {
+    margin-left: auto;
+  }
 }

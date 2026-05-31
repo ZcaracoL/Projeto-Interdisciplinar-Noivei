@@ -1,156 +1,346 @@
-.lojas-page {
-  padding: 40px 5%;
-  background-color: #f8f4ff;
-  min-height: 80vh;
+/* ============================================
+   ESTILOS DA PÁGINA DE LOJAS
+   ============================================ */
+
+.pagina-lojas {
+  max-width: 100%;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.container-lojas h2 {
-  text-align: center;
-  color: var(--cor4);
-  font-size: 2.5rem;
-  margin-bottom: 5px;
+.container-lojas {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+  position: relative;
+  z-index: 1;
 }
 
-.instrucao {
+/* HERO - mudado de .cabecalho para .hero-lojas */
+.lojas-header {
   text-align: center;
+  margin-bottom: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.lojas-header h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.lojas-header p {
+  font-size: 1.2rem;
   color: #6b6375;
-  margin-bottom: 40px;
-}
-
-.lista-fornecedores {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 900px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-.card-item-fornecedor {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid #e5e4e7;
-}
-
-.fornecedor-header-click {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  cursor: pointer;
-  gap: 20px;
-}
-
-.fornecedor-header-click:hover {
-  background-color: #faf9ff;
-}
-
-/* Tamanho controlado da foto do fornecedor na listagem */
-.foto-lista {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.fornecedor-detalhes-resumo {
-  flex: 1;
-  text-align: left;
-}
-
-.fornecedor-detalhes-resumo h3 {
-  margin: 0 0 5px 0;
-  color: var(--cor4);
-}
-
-.tag-categoria {
-  background: var(--cor1);
-  color: white;
-  padding: 3px 10px;
-  font-size: 0.8rem;
+/* Restante do CSS continua igual */
+.carregando {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #4a3a8c;
+  backdrop-filter: blur(10px);
 }
 
-.desc-curta {
-  color: #6b6375;
-  font-size: 0.95rem;
-  margin-top: 5px;
+.vazio {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  font-size: 1.2rem;
+  color: #4a3a8c;
+  border: 2px dashed #7c62fc;
+  backdrop-filter: blur(10px);
 }
 
-.btn-ver-planos {
-  background: transparent;
-  border: 2px solid var(--cor3);
-  color: var(--cor3);
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Área dos planos expandidos */
-.secao-planos-embutida {
-  background-color: #faf9ff;
-  border-top: 1px solid #e5e4e7;
-  padding: 25px;
-  text-align: left;
-}
-
-.secao-planos-embutida h4 {
-  color: var(--cor5);
-  margin-bottom: 15px;
-}
-
-.grid-planos {
+.grid-lojas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 35px;
+  margin-bottom: 60px;
 }
 
-.card-plano-individual {
+.card {
   background: white;
-  border: 2px solid #e5e4e7;
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: calc(0.05s * var(--index));
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(124, 98, 252, 0.2);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-img {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img img {
+  transform: scale(1.1);
+}
+
+.categoria {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-conteudo {
+  padding: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-height: 260px;
 }
 
-.card-plano-individual h5 {
-  font-size: 1.1rem;
-  color: var(--cor4);
+.card-conteudo h3 {
+  color: #4a3a8c;
+  font-size: 1.3rem;
   margin: 0 0 10px 0;
+  font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-.preco-plano {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: var(--cor3);
-  margin-bottom: 10px;
+.card:hover .card-conteudo h3 {
+  color: #7c62fc;
 }
 
-.desc-plano {
-  font-size: 0.9rem;
+.cidade {
   color: #6b6375;
-  flex-grow: 1;
-  margin-bottom: 15px;
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
 }
 
-.btn-contratar {
-  background: var(--cor4);
+.descricao {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.botao {
+  display: block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border: none;
-  padding: 8px 0;
-  border-radius: 4px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.botao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.botao:hover::before {
+  left: 100%;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 98, 252, 0.3);
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+}
+
+.paginacao button {
+  background: white;
+  border: 2px solid #e5e4e7;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #4a3a8c;
   font-weight: bold;
   cursor: pointer;
-  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
 
-.btn-contratar:hover {
-  background: var(--cor5);
+.paginacao button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(124, 98, 252, 0.3);
+}
+
+.paginacao button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paginacao button.ativo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 5px 15px rgba(124, 98, 252, 0.3);
+}
+
+.paginas-numeros {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pontos {
+  color: #6b6375;
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .container-lojas {
+    width: 95%;
+    padding: 20px 0 40px;
+  }
+  
+  .hero-lojas {
+    margin-bottom: 40px;
+    padding: 30px 20px;
+  }
+  
+  .hero-lojas h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-lojas p {
+    font-size: 1rem;
+  }
+  
+  .grid-lojas {
+    gap: 25px;
+  }
+  
+  .paginacao {
+    gap: 10px;
+    padding: 15px 20px;
+  }
+  
+  .paginacao button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-lojas {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .hero-lojas h1 {
+    font-size: 1.8rem;
+  }
+  
+  .card-conteudo {
+    padding: 20px;
+  }
+  
+  .card-conteudo h3 {
+    font-size: 1.2rem;
+  }
+  
+  .descricao {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .paginacao {
+    flex-direction: column;
+  }
+  
+  .paginas-numeros {
+    order: -1;
+    margin-bottom: 10px;
+  }
 }

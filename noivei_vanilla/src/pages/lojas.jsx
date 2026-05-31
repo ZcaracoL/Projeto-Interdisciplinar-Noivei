@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import api from "../services/api"; // Configuração do seu Axios
-import "./lojas.css"; // Seus estilos específicos da página de listagem
+import api from "../services/api";
+import "./lojas.css";
 
 export default function Lojas() {
   const [fornecedores, setFornecedores] = useState([]);
   const [carregando, setCarregando] = useState(true);
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const itensPorPagina = 12;
 
-  // Buscar todos os fornecedores do MongoDB ao carregar a página
   useEffect(() => {
     async function obterFornecedores() {
       try {
@@ -24,101 +25,96 @@ export default function Lojas() {
     obterFornecedores();
   }, []);
 
+  const ultimoIndex = paginaAtual * itensPorPagina;
+  const primeiroIndex = ultimoIndex - itensPorPagina;
+  const fornecedoresAtuais = fornecedores.slice(primeiroIndex, ultimoIndex);
+  const totalPaginas = Math.ceil(fornecedores.length / itensPorPagina);
+
+  const irParaPagina = (numero) => {
+    setPaginaAtual(numero);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
-      <Header />
-
-      <main className="lojas-page" style={{ maxWidth: "1200px", margin: "40px auto", padding: "0 20px" }}>
-        <header className="lojas-header" style={{ marginBottom: "30px", textAlign: "center" }}>
-          <h1>Explore Nossos Fornecedores</h1>
-          <p style={{ color: "#666" }}>Encontre os melhores profissionais para o seu grande dia</p>
-        </header>
-
-        {carregando ? (
-          <div style={{ textAlign: "center", padding: "50px", fontSize: "1.2rem" }}>
-            Carregando fornecedores...
+      <div className="pagina-lojas">
+        <div className="container-lojas">
+          {/* MUDEI de "cabecalho" para "hero-lojas" pra não conflitar */}
+          <div className="hero-lojas">
+            <h1>Explore nossos fornecedores</h1>
+            <p>Encontre os melhores profissionais para o seu grande dia!</p>
           </div>
-        ) : fornecedores.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "50px" }}>
-            <p style={{ color: "#777" }}>Nenhum fornecedor encontrado no momento.</p>
-          </div>
-        ) : (
-          /* Grid de exibição dos Cards */
-          <div className="lojas-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "30px" }}>
-            {fornecedores.map((fornecedor) => (
-              <div 
-                className="loja-card" 
-                key={fornecedor._id} 
-                style={{ 
-                  background: "white", 
-                  borderRadius: "12px", 
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.05)", 
-                  overflow: "hidden", 
-                  display: "flex", 
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  border: "1px solid #eee"
-                }}
-              >
-                {/* Imagem e Categoria */}
-                <div style={{ position: "relative" }}>
-                  <img 
-                    src={fornecedor.imagem || "https://images.unsplash.com/photo-1519741497674-611481863552"} 
-                    alt={fornecedor.nomeLoja} 
-                    style={{ width: "100%", height: "200px", objectFit: "cover" }}
-                  />
-                  <span 
-                    style={{ 
-                      position: "absolute", 
-                      top: "12px", 
-                      left: "12px", 
-                      background: "#7c62fc", 
-                      color: "white", 
-                      padding: "4px 10px", 
-                      borderRadius: "20px", 
-                      fontSize: "0.75rem", 
-                      fontWeight: "bold" 
-                    }}
-                  >
-                    {fornecedor.categoria}
-                  </span>
-                </div>
 
-                {/* Informações textuais da Loja */}
-                <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <div>
-                    <h3 style={{ margin: "0 0 8px 0", color: "#333", fontSize: "1.25rem" }}>{fornecedor.nomeLoja}</h3>
-                    <p style={{ color: "#777", fontSize: "0.85rem", margin: "0 0 12px 0" }}>📍 {fornecedor.cidade}</p>
-                    <p style={{ color: "#555", fontSize: "0.95rem", lineHeight: "1.4", margin: "0 0 20px 0" }}>
-                      {fornecedor.descricao}
-                    </p>
+          {carregando ? (
+            <div className="carregando">Carregando fornecedores...</div>
+          ) : fornecedores.length === 0 ? (
+            <div className="vazio">Nenhum fornecedor encontrado.</div>
+          ) : (
+            <>
+              <div className="grid-lojas">
+                {fornecedoresAtuais.map((fornecedor, index) => (
+                  <div className="card" key={fornecedor._id} style={{ '--index': index + 1 }}>
+                    <div className="card-img">
+                      <img 
+                        src={fornecedor.imagem || "https://images.unsplash.com/photo-1519741497674-611481863552"} 
+                        alt={fornecedor.nomeLoja}
+                      />
+                      <span className="categoria">{fornecedor.categoria}</span>
+                    </div>
+                    <div className="card-conteudo">
+                      <h3>{fornecedor.nomeLoja}</h3>
+                      <p className="cidade">📍 {fornecedor.cidade || "Localização não informada"}</p>
+                      <p className="descricao">{fornecedor.descricao || "Sem descrição disponível"}</p>
+                      <Link to={`/loja/${fornecedor._id}`} className="botao">
+                        Ver Loja
+                      </Link>
+                    </div>
                   </div>
-
-                  {/* 🚀 BOTÃO ATUALIZADO: Agora é um Link apontando para a página de detalhes dinâmica */}
-                  <Link 
-                    to={`/loja/${fornecedor._id}`} 
-                    className="btn-ver-loja"
-                    style={{ 
-                      display: "block", 
-                      textAlign: "center", 
-                      background: "#7c62fc", 
-                      color: "white", 
-                      padding: "10px 0", 
-                      borderRadius: "6px", 
-                      textDecoration: "none", 
-                      fontWeight: "bold",
-                      transition: "background 0.2s"
-                    }}
-                  >
-                    Ver Loja
-                  </Link>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
-      </main>
 
+              {totalPaginas > 1 && (
+                <div className="paginacao">
+                  <button onClick={() => irParaPagina(paginaAtual - 1)} disabled={paginaAtual === 1}>
+                    ◀ Anterior
+                  </button>
+                  
+                  <div className="paginas-numeros">
+                    {[...Array(totalPaginas)].map((_, i) => {
+                      if (
+                        i + 1 === 1 ||
+                        i + 1 === totalPaginas ||
+                        (i + 1 >= paginaAtual - 1 && i + 1 <= paginaAtual + 1)
+                      ) {
+                        return (
+                          <button
+                            key={i}
+                            onClick={() => irParaPagina(i + 1)}
+                            className={paginaAtual === i + 1 ? "ativo" : ""}
+                          >
+                            {i + 1}
+                          </button>
+                        );
+                      }
+                      if (
+                        (i + 1 === paginaAtual - 2 && paginaAtual > 3) ||
+                        (i + 1 === paginaAtual + 2 && paginaAtual < totalPaginas - 2)
+                      ) {
+                        return <span key={i} className="pontos">...</span>;
+                      }
+                      return null;
+                    })}
+                  </div>
+                  
+                  <button onClick={() => irParaPagina(paginaAtual + 1)} disabled={paginaAtual === totalPaginas}>
+                    Próxima ▶
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
       <Footer />
     </>
   );

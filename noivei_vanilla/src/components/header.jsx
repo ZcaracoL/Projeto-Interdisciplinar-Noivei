@@ -4,33 +4,32 @@ import "./header.css";
 import Noivei2 from "../assets/midias/Noivei2.png";
 
 export default function Header() {
-const [menuAberto, setMenuAberto] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(false);
 
-return ( <header> <div className="logo"> <Link to="/"> <img src={ Noivei2 } alt="Logo" /> </Link> </div>
+  const toggleMenu = () => setMenuAberto(!menuAberto);
+  const fecharMenu = () => setMenuAberto(false);
 
-  <div
-    className="menu-toggle"
-    onClick={() => setMenuAberto(!menuAberto)}
-  >
-    ☰
-  </div>
+  return (
+    <header id="headerunica">
+      <div className="logo">
+        <Link to="/" onClick={fecharMenu}>
+          <img src={Noivei2} alt="Logo" />
+        </Link>
+      </div>
 
-  <div className={`menu-desktop ${menuAberto ? "ativo" : ""}`}>
-    <Link className="shortcut" to="/lojas">
-      Lojas
-    </Link>
+      <button 
+        className="menu-toggle" 
+        onClick={toggleMenu}
+        aria-label="Menu"
+      >
+        ☰
+      </button>
 
-    <div className="search">
-      <form>
-        <input type="text" placeholder="Pesquisar..." />
-        <button>🔍</button>
-      </form>
-    </div>
-  </div>
-
-  <div className="perfil"></div>
-</header>
-
-
-);
+      <nav className={`menu-desktop ${menuAberto ? "ativo" : ""}`}>
+        <Link to="/lojas" className="shortcut" onClick={fecharMenu}>
+          Lojas
+        </Link>
+      </nav>
+    </header>
+  );
 }

@@ -1,0 +1,496 @@
+/* Cadastro.css - Design Premium e Moderno */
+
+/* Importando fontes modernas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
+/* Variáveis de design system */
+:root {
+  /* Cores primárias - Gradiente futurista */
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+  --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  
+  /* Cores sólidas */
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-500: #8b5cf6;
+  --color-purple-600: #7c3aed;
+  --color-purple-700: #6d28d9;
+  --color-cyan-500: #06b6d4;
+  
+  /* Cores neutras */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* Tokens de design */
+  --border-radius-sm: 12px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-xl: 32px;
+  --border-radius-full: 9999px;
+  
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+  
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Container principal com animação de entrada */
+.login-wrapper {
+  min-height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  background: var(--color-gray-900);
+}
+
+/* Background com gradiente animado */
+.login-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 40% 20%, rgba(217, 70, 239, 0.1) 0%, transparent 50%);
+  animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Partículas flutuantes */
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(139, 92, 246, 0.4), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, rgba(6, 182, 212, 0.4), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 90px 120px, rgba(139, 92, 246, 0.4), rgba(0,0,0,0));
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  animation: floatParticles 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatParticles {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+}
+
+/* Container dos formulários */
+.forms-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  z-index: 10;
+  animation: slideIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Card do formulário - Design Glassmorphism + Neumorphism */
+.form-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: var(--border-radius-xl);
+  padding: 52px 44px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: var(--transition-base);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Efeito de brilho no card */
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgba(255,255,255,0.5) 0%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0) 100%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Hover effect */
+.form-card:hover {
+    transform: scale(1.02);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Título com animação */
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 50px;
+  margin-top: 0;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+  position: relative;
+  font-family: 'Space Grotesk', sans-serif;
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; text-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+}
+
+/* Input fields com design moderno */
+.form-card input {
+  width: 100%;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--border-radius-md);
+  font-size: 16px;
+  transition: var(--transition-base);
+  background: var(--color-gray-50);
+  color: var(--color-gray-900);
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  position: relative;
+}
+
+.form-card input:hover {
+  border-color: var(--color-gray-300);
+  background: white;
+}
+
+.form-card input:focus {
+  border-color: var(--color-purple-500);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+  transform: scale(1.01);
+}
+
+/* Placeholder styling */
+.form-card input::placeholder {
+  color: var(--color-gray-400);
+  font-weight: 400;
+  transition: var(--transition-fast);
+}
+
+.form-card input:focus::placeholder {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+/* Botão principal com efeito 3D */
+.form-card button {
+  width: 100%;
+  padding: 16px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-base);
+  margin-top: 16px;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Space Grotesk', sans-serif;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Efeito ripple */
+.form-card button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.form-card button:hover::after {
+  width: 110%;
+  height: 300px;
+}
+
+.form-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+
+.form-card button:active {
+  transform: translateY(2px);
+}
+
+/* Loading state do botão */
+.form-card button.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.form-card button.loading::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Link de troca de formulário */
+.troca-form {
+  display: block;
+  text-align: center;
+  margin-top: 32px;
+  color: var(--color-purple-600);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: var(--transition-base);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.troca-form::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: var(--transition-base);
+  transform: translateX(-50%);
+}
+
+.troca-form:hover {
+  color: var(--color-purple-700);
+}
+
+.troca-form:hover::after {
+  width: 80%;
+}
+
+/* Mensagens de feedback com animação */
+.error-message,
+.success-message {
+  padding: 14px 18px;
+  border-radius: var(--border-radius-md);
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  animation: slideDown 0.3s ease-out;
+  font-family: 'Inter', sans-serif;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  color: #dc2626;
+  border-left: 4px solid #dc2626;
+  box-shadow: var(--shadow-sm);
+}
+
+.success-message {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  color: #059669;
+  border-left: 4px solid #059669;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Inputs desabilitados */
+.form-card input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-gray-100);
+}
+
+/* Responsividade com animações adaptativas */
+@media (max-width: 640px) {
+  .forms-container {
+    max-width: 95%;
+  }
+  
+  .form-card {
+    padding: 36px 24px;
+  }
+  
+  .form-card h2 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+  
+  .form-card input {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  
+  .form-card button {
+    padding: 14px;
+    font-size: 14px;
+  }
+  
+  .troca-form {
+    margin-top: 24px;
+    font-size: 13px;
+  }
+}
+
+/* Efeito de focus-visible para acessibilidade */
+.form-card input:focus-visible,
+.form-card button:focus-visible {
+  outline: 2px solid var(--color-purple-500);
+  outline-offset: 2px;
+}
+
+/* Scrollbar customizada */
+.login-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.login-wrapper::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+.login-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-purple-500);
+  border-radius: var(--border-radius-full);
+}
+
+.login-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--color-purple-600);
+}
+
+/* Animações de entrada para os campos */
+.form-card input {
+  animation: fadeInUp 0.6s backwards;
+}
+
+.form-card input:nth-child(1) { animation-delay: 0.1s; }
+.form-card input:nth-child(2) { animation-delay: 0.2s; }
+.form-card input:nth-child(3) { animation-delay: 0.3s; }
+.form-card input:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efeito de glassmorphism no container principal */
+@media (min-width: 1024px) {
+  .forms-container {
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-xl);
+  }
+}
+
+/* Autofill styles */
+.form-card input:-webkit-autofill,
+.form-card input:-webkit-autofill:hover,
+.form-card input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+  border-color: var(--color-purple-500);
+}
+
+/* Estilo para o ícone de olho (adicione se quiser mostrar/esconder senha) */
+.password-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--color-gray-400);
+  transition: var(--transition-fast);
+}
+
+.password-toggle:hover {
+  color: var(--color-purple-500);
+}
