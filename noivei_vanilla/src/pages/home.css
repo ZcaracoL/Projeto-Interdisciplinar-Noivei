@@ -41,17 +41,14 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: white;
     margin-bottom: 16px;
 }
 
 .section-title {
     font-size: 2.8rem;
     margin-bottom: 16px;
-    color: #1a1a2e;
+    color: #ffffff;
 }
 
 .section-description {
@@ -69,7 +66,7 @@ body {
 }
 
 /* Hero Section */
-.hero {
+.x2hero {
     min-height: 90vh;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
                 url("https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=870&auto=format&fit=crop") center/cover fixed;
@@ -78,12 +75,12 @@ body {
     position: relative;
 }
 
-.hero-overlay {
+.x2hero-overlay {
     width: 100%;
     padding: 80px 0;
 }
 
-.hero-content {
+.x2hero-content {
     max-width: 90%;
     margin: 0 auto;
     text-align: start;
@@ -91,7 +88,7 @@ body {
     animation: fadeInUp 1s ease;
 }
 
-.hero-badge {
+.x2hero-badge {
     display: inline-block;
     background: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
@@ -102,20 +99,20 @@ body {
     margin-bottom: 24px;
 }
 
-.hero h1 {
+.x2hero h1 {
     font-size: 4rem;
     margin-bottom: 24px;
     line-height: 1.2;
 }
 
-.hero-description {
+.x2hero-description {
     font-size: 1.2rem;
     margin-bottom: 40px;
     line-height: 1.6;
     opacity: 0.95;
 }
 
-.hero-stats {
+.x2hero-stats {
     display: flex;
     justify-content: center;
     gap: 48px;
@@ -123,30 +120,30 @@ body {
     flex-wrap: wrap;
 }
 
-.stat {
+.x2stat {
     text-align: center;
 }
 
-.stat-number {
+.x2stat-number {
     display: block;
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.stat-label {
+.x2stat-label {
     font-size: 0.9rem;
     opacity: 0.9;
 }
 
-.botoes {
+.x2botoes {
     display: flex;
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary {
+.x2btn-primary, .x2btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -158,24 +155,24 @@ body {
     font-size: 1rem;
 }
 
-.btn-primary {
+.x2btn-primary {
     background: var(--gradient-primary);
     color: white;
     box-shadow: 0 4px 15px rgba(67,40,197,0.3);
 }
 
-.btn-primary:hover {
+.x2btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(67,40,197,0.4);
 }
 
-.btn-secondary {
+.x2btn-secondary {
     background: transparent;
     color: white;
     border: 2px solid white;
 }
 
-.btn-secondary:hover {
+.x2btn-secondary:hover {
     background: white;
     color: var(--cor4);
     transform: translateY(-3px);

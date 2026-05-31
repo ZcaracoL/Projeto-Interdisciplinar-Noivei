@@ -37,9 +37,10 @@ export default function Lojas() {
 
   return (
     <>
+      <Header />
+      
       <div className="pagina-lojas">
         <div className="container-lojas">
-          {/* MUDEI de "cabecalho" para "hero-lojas" pra não conflitar */}
           <div className="hero-lojas">
             <h1>Explore nossos fornecedores</h1>
             <p>Encontre os melhores profissionais para o seu grande dia!</p>

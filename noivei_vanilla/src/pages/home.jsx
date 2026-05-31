@@ -25,39 +25,39 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="hero">
-          <div className="hero-overlay">
-            <div className="hero-content">
-              <div className="hero-badge">O maior cerimonialista de casamentos em formato online do Brasil</div>
+        <section className="x2hero">
+          <div className="x2hero-overlay">
+            <div className="x2hero-content">
+              <div className="x2hero-badge">O maior cerimonialista de casamentos em formato online do Brasil</div>
               <h1>
-                Bem-Vindo ao <span className="gradient-text">Noivei!</span>
+                Bem-Vindo ao <span className="x2gradient-text">Noivei!</span>
               </h1>
-              <p className="hero-description">
+              <p className="x2hero-description">
                 O lugar perfeito para noivos encontrarem tudo que precisam para o grande dia.
                 Dos melhores fornecedores aos detalhes mais especiais, realizamos seu sonho.
               </p>
-              <div className="hero-stats">
-                <div className="stat">
-                  <span className="stat-number">500+</span>
+              <div className="x2hero-stats">
+                <div className="x2stat">
+                  <span className="x2stat-number">500+</span>
                   <span className="stat-label">Fornecedores</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">10k+</span>
-                  <span className="stat-label">Casais felizes</span>
+                  <span className="x2stat-number">10k+</span>
+                  <span className="x2stat-label">Casais felizes</span>
                 </div>
                 <div className="stat">
-                  <span className="stat-number">50+</span>
-                  <span className="stat-label">Cidades atendidas</span>
+                  <span className="x2stat-number">50+</span>
+                  <span className="x2stat-label">Cidades atendidas</span>
                 </div>
               </div>
-              <div className="botoes">
-                <Link to="/lojas" className="btn-primary">
+              <div className="x2botoes">
+                <Link to="/lojas" className="x2btn-primary">
                   <span>Explorar Fornecedores</span>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </Link>
-                <Link to="/cadastro" className="btn-secondary">
+                <Link to="/cadastro" className="x2btn-secondary">
                   <span>Sou Fornecedor</span>
                 </Link>
               </div>

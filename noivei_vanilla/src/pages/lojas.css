@@ -7,7 +7,6 @@
   margin: 0 auto;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   min-height: 100vh;
-  position: relative;
   overflow-x: hidden;
 }
 
@@ -16,12 +15,10 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 40px 0 60px;
-  position: relative;
-  z-index: 1;
 }
 
 /* HERO - mudado de .cabecalho para .hero-lojas */
-.lojas-header {
+.hero-lojas {
   text-align: center;
   margin-bottom: 60px;
   background: rgba(255, 255, 255, 0.95);
@@ -30,7 +27,7 @@
   backdrop-filter: blur(10px);
 }
 
-.lojas-header h1 {
+.hero-lojas h1 {
   font-size: 3rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
@@ -40,7 +37,7 @@
   font-weight: 800;
 }
 
-.lojas-header p {
+.hero-lojas p {
   font-size: 1.2rem;
   color: #6b6375;
   max-width: 600px;

@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import api from "../services/api";
-import "./Perfil.css"; // Importe o CSS
+import "./perfil.css";
 
 export default function Perfil() {
   const [storeData, setStoreData] = useState({
     nomeLoja: "",
     descricao: "",
     imagem: "",
+    categoria: "",
   });
 
   const [previewImage, setPreviewImage] = useState(null);
@@ -16,8 +17,104 @@ export default function Perfil() {
   const [loading, setLoading] = useState(false);
   const [imageUrlInput, setImageUrlInput] = useState("");
   const [alert, setAlert] = useState({ show: false, type: "", message: "" });
+  
+  // States para a categoria digitável
+  const [categoriaInput, setCategoriaInput] = useState("");
+  const [categoriasSugeridas, setCategoriasSugeridas] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isCustomCategory, setIsCustomCategory] = useState(false);
+  const categoriaInputRef = useRef(null);
+
+  // Lista de categorias pré-definidas
+  const categoriasPreDefinidas = [
+    { id: "alimentacao", nome: "🍔 Alimentação", icone: "🍔" },
+    { id: "tecnologia", nome: "💻 Tecnologia", icone: "💻" },
+    { id: "moda", nome: "👗 Moda", icone: "👗" },
+    { id: "beleza", nome: "💄 Beleza & Estética", icone: "💄" },
+    { id: "educacao", nome: "📚 Educação", icone: "📚" },
+    { id: "saude", nome: "🏥 Saúde", icone: "🏥" },
+    { id: "esportes", nome: "⚽ Esportes", icone: "⚽" },
+    { id: "eventos", nome: "🎉 Eventos", icone: "🎉" },
+    { id: "consultoria", nome: "📊 Consultoria", icone: "📊" },
+    { id: "marketing", nome: "📢 Marketing", icone: "📢" },
+    { id: "design", nome: "🎨 Design", icone: "🎨" },
+    { id: "fotografia", nome: "📸 Fotografia", icone: "📸" },
+    { id: "construcao", nome: "🔨 Construção", icone: "🔨" },
+    { id: "automotivo", nome: "🚗 Automotivo", icone: "🚗" },
+    { id: "pet", nome: "🐾 Pet", icone: "🐾" },
+    { id: "imobiliaria", nome: "🏠 Imobiliária", icone: "🏠" },
+    { id: "viagem", nome: "✈️ Viagem", icone: "✈️" },
+    { id: "musica", nome: "🎵 Música", icone: "🎵" },
+    { id: "financeiro", nome: "💰 Financeiro", icone: "💰" },
+    { id: "juridico", nome: "⚖️ Jurídico", icone: "⚖️" },
+    { id: "limpeza", nome: "🧹 Limpeza", icone: "🧹" },
+    { id: "entregas", nome: "🚚 Entregas", icone: "🚚" },
+    { id: "reparos", nome: "🔧 Reparos", icone: "🔧" },
+    { id: "outros", nome: "📦 Outros", icone: "📦" },
+  ];
 
   const fornecedorId = localStorage.getItem("fornecedorId");
+
+  // Filtrar sugestões
+  const filterSuggestions = (input) => {
+    if (!input || input.trim() === "") {
+      return [];
+    }
+    
+    const searchTerm = input.toLowerCase();
+    const matches = categoriasPreDefinidas.filter(cat =>
+      cat.nome.toLowerCase().includes(searchTerm) ||
+      cat.id.toLowerCase().includes(searchTerm)
+    );
+    
+    const exactMatch = matches.some(cat => cat.nome.toLowerCase() === searchTerm);
+    if (!exactMatch && input.trim() !== "") {
+      matches.unshift({
+        id: "custom",
+        nome: `+ Criar "${input}"`,
+        icone: "",
+        isCustom: true
+      });
+    }
+    
+    return matches.slice(0, 8);
+  };
+
+  const handleCategoriaInputChange = (e) => {
+    const value = e.target.value;
+    setCategoriaInput(value);
+    setStoreData(prev => ({ ...prev, categoria: value }));
+    
+    const suggestions = filterSuggestions(value);
+    setCategoriasSugeridas(suggestions);
+    setShowSuggestions(suggestions.length > 0);
+    setIsCustomCategory(!categoriasPreDefinidas.some(cat => cat.nome === value));
+  };
+
+  const selectSuggestion = (suggestion) => {
+    if (suggestion.isCustom) {
+      const customName = categoriaInput;
+      setCategoriaInput(customName);
+      setStoreData(prev => ({ ...prev, categoria: customName }));
+      setIsCustomCategory(true);
+    } else {
+      setCategoriaInput(suggestion.nome);
+      setStoreData(prev => ({ ...prev, categoria: suggestion.nome }));
+      setIsCustomCategory(false);
+    }
+    setShowSuggestions(false);
+  };
+
+  // Fechar sugestões ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (categoriaInputRef.current && !categoriaInputRef.current.contains(event.target)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     async function carregarDadosPerfil() {
@@ -31,8 +128,10 @@ export default function Perfil() {
           setStoreData({
             nomeLoja: meuPerfil.nomeLoja || "",
             descricao: meuPerfil.descricao || "",
-            imagem: meuPerfil.imagem || ""
+            imagem: meuPerfil.imagem || "",
+            categoria: meuPerfil.categoria || "",
           });
+          setCategoriaInput(meuPerfil.categoria || "");
           if (meuPerfil.imagem) setPreviewImage(meuPerfil.imagem);
           setImageUrlInput(meuPerfil.imagem || "");
           setPlans(meuPerfil.planos || []);
@@ -105,6 +204,11 @@ export default function Perfil() {
       return;
     }
 
+    if (!storeData.categoria || storeData.categoria.trim() === "") {
+      showAlert("error", "Por favor, digite ou selecione uma categoria");
+      return;
+    }
+
     if (storeData.imagem && !isValidImageUrl(storeData.imagem)) {
       showAlert("error", "Por favor, insira uma URL válida de imagem");
       return;
@@ -117,6 +221,7 @@ export default function Perfil() {
         nomeLoja: storeData.nomeLoja,
         descricao: storeData.descricao,
         imagem: storeData.imagem,
+        categoria: storeData.categoria,
         planos: plans,
       };
 
@@ -136,6 +241,7 @@ export default function Perfil() {
       <Header />
 
       <main className="perfil-page">
+        {/* Alertas */}
         {alert.show && (
           <div className={`alert alert-${alert.type}`}>
             <span>{alert.type === "success" ? "✅" : "❌"}</span>
@@ -143,12 +249,13 @@ export default function Perfil() {
           </div>
         )}
 
-        {/* Dados Gerais */}
+        {/* SEÇÃO 1: DADOS GERAIS */}
         <div className="perfil-card">
           <div className="card-header">
             <h2>Personalizar Loja</h2>
           </div>
 
+          {/* Preview da imagem */}
           <div className="profile-preview-container">
             <div className="profile-image-wrapper">
               {previewImage ? (
@@ -158,7 +265,9 @@ export default function Perfil() {
                   className="profile-image"
                   onError={(e) => {
                     e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "flex";
+                    if (e.target.nextSibling) {
+                      e.target.nextSibling.style.display = "flex";
+                    }
                   }}
                 />
               ) : null}
@@ -170,8 +279,9 @@ export default function Perfil() {
             </div>
           </div>
 
+          {/* URL da imagem */}
           <div className="form-group">
-            <label className="form-label required">URL da Foto de Perfil</label>
+            <label className="form-label">URL da Foto de Perfil</label>
             <div className="url-input-wrapper">
               <svg className="url-icon" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
@@ -184,11 +294,10 @@ export default function Perfil() {
                 onChange={handleImageUrlChange}
               />
             </div>
-            <small style={{ color: "var(--gray-600)", display: "block", marginTop: "0.25rem" }}>
-              Insira o link direto da imagem (JPG, PNG, GIF, WEBP ou SVG)
-            </small>
+            <small className="form-help">Insira o link direto da imagem (JPG, PNG, GIF, WEBP ou SVG)</small>
           </div>
 
+          {/* Nome da loja */}
           <div className="form-group">
             <label className="form-label required">Nome da Loja</label>
             <input
@@ -201,6 +310,85 @@ export default function Perfil() {
             />
           </div>
 
+          {/* CATEGORIA DIGITÁVEL COM AUTOCOMPLETE */}
+          <div className="form-group" ref={categoriaInputRef}>
+            <label className="form-label required">
+              Categoria da Loja
+              {isCustomCategory && storeData.categoria && (
+                <span className="custom-badge">✨ Personalizada</span>
+              )}
+            </label>
+            
+            <div className="categoria-input-wrapper">
+              <input
+                type="text"
+                className={`form-input ${isCustomCategory && categoriaInput ? 'custom-category-input' : ''}`}
+                placeholder="Digite uma categoria (ex: Tecnologia, Moda, ou crie sua própria)"
+                value={categoriaInput}
+                onChange={handleCategoriaInputChange}
+                onFocus={() => {
+                  if (categoriaInput) {
+                    const suggestions = filterSuggestions(categoriaInput);
+                    setCategoriasSugeridas(suggestions);
+                    setShowSuggestions(suggestions.length > 0);
+                  }
+                }}
+              />
+              
+              {/* Sugestões */}
+              {showSuggestions && categoriasSugeridas.length > 0 && (
+                <div className="categorias-suggestions">
+                  {categoriasSugeridas.map((sug, index) => (
+                    <div
+                      key={index}
+                      className={`suggestion-item ${sug.isCustom ? 'custom-suggestion' : ''}`}
+                      onClick={() => selectSuggestion(sug)}
+                    >
+                      <span className="suggestion-icon">{sug.icone}</span>
+                      <span className="suggestion-name">{sug.nome}</span>
+                      {!sug.isCustom && (
+                        <span className="suggestion-badge">Popular</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            
+            <small className="form-help">💡 Digite para ver sugestões ou crie sua própria categoria</small>
+            
+            {/* Chips de categorias populares */}
+            <div className="categorias-chips">
+              {categoriasPreDefinidas.slice(0, 8).map(cat => (
+                <span
+                  key={cat.id}
+                  className="categoria-chip"
+                  onClick={() => {
+                    setCategoriaInput(cat.nome);
+                    setStoreData(prev => ({ ...prev, categoria: cat.nome }));
+                    setIsCustomCategory(false);
+                    setShowSuggestions(false);
+                  }}
+                >
+                  <span>{cat.icone}</span>
+                  <span>{cat.nome.split(' ')[0]}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Badge da categoria selecionada */}
+          {storeData.categoria && (
+            <div className={`categoria-badge ${isCustomCategory ? 'custom-categoria-badge' : ''}`}>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l5 5a2 2 0 01.586 1.414V19a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z" />
+              </svg>
+              {storeData.categoria}
+              {isCustomCategory && " ✨"}
+            </div>
+          )}
+
+          {/* Descrição */}
           <div className="form-group">
             <label className="form-label">Descrição</label>
             <textarea
@@ -213,7 +401,7 @@ export default function Perfil() {
           </div>
         </div>
 
-        {/* Planos */}
+        {/* SEÇÃO 2: PLANOS */}
         <div className="perfil-card">
           <div className="card-header">
             <h2>Pacotes de Planos</h2>
@@ -227,12 +415,12 @@ export default function Perfil() {
 
           <div className="plans-section">
             {plans.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "3rem", color: "var(--gray-500)" }}>
+              <div className="empty-plans">
                 <svg width="48" height="48" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/>
                 </svg>
-                <p style={{ marginTop: "1rem" }}>Nenhum plano cadastrado ainda</p>
-                <button onClick={addPlan} className="btn btn-outline" style={{ marginTop: "1rem" }}>
+                <p>Nenhum plano cadastrado ainda</p>
+                <button onClick={addPlan} className="btn btn-outline">
                   Criar seu primeiro plano
                 </button>
               </div>
@@ -282,7 +470,6 @@ export default function Perfil() {
                     <button
                       onClick={() => removePlan(index)}
                       className="btn btn-danger"
-                      style={{ padding: "0.5rem 1rem" }}
                     >
                       Remover Pacote
                     </button>
@@ -294,7 +481,7 @@ export default function Perfil() {
         </div>
 
         {/* Botão Salvar */}
-        <div style={{ marginTop: "2rem" }}>
+        <div className="save-button-wrapper">
           <button
             onClick={saveProfile}
             disabled={loading}
@@ -306,9 +493,7 @@ export default function Perfil() {
                 Salvando...
               </>
             ) : (
-              <>
-                💾 Salvar Todas as Alterações
-              </>
+              <>Salvar Todas as Alterações</>
             )}
           </button>
         </div>
