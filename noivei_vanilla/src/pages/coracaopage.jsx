@@ -1,9 +1,9 @@
 // src/pages/Coracoes.jsx
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom'; // Adicione esta importação
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import CoracaoCard from '../components/CoracaoCard';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import CoracaoCard from '../components/coracaocard';
 import api from '../services/api';
 import './coracoes.css';
 

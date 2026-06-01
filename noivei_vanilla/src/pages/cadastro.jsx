@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/footer";
 import api from "../services/api";
 import "./cadastro.css"; 
 
@@ -108,118 +109,121 @@ export default function Cadastro() {
   }
 
   return (
-    <main>
-      <div className="login-wrapper">
-        <div className="forms-container">
+    <>
+      <main>
+        <div className="login-wrapper">
+          <div className="forms-container">
 
-          {!isLogin ? (
-            <div className="form-card">
-              <h2>Criar conta</h2>
+            {!isLogin ? (
+              <div className="form-card">
+                <h2>Criar conta</h2>
 
-              {/* Mensagens de feedback */}
-              {errorMessage && (
-                <div className="error-message">
-                  {errorMessage}
-                </div>
-              )}
-              
-              {successMessage && (
-                <div className="success-message">
-                  {successMessage}
-                </div>
-              )}
+                {/* Mensagens de feedback */}
+                {errorMessage && (
+                  <div className="error-message">
+                    {errorMessage}
+                  </div>
+                )}
 
-              <input
-                name="nome"
-                type="text"
-                placeholder="Nome da Empresa / Seu Nome"
-                value={form.nome}
-                onChange={alterarCampo}
-                disabled={isLoading}
-              />
+                {successMessage && (
+                  <div className="success-message">
+                    {successMessage}
+                  </div>
+                )}
 
-              <input
-                name="email"
-                type="type" // Mantido como original, mas aceita e-mail normalmente
-                placeholder="Email"
-                value={form.email}
-                onChange={alterarCampo}
-                disabled={isLoading}
-              />
+                <input
+                  name="nome"
+                  type="text"
+                  placeholder="Nome da Empresa / Seu Nome"
+                  value={form.nome}
+                  onChange={alterarCampo}
+                  disabled={isLoading}
+                />
 
-              <input
-                name="telefone"
-                type="text"
-                placeholder="Telefone / WhatsApp"
-                value={form.telefone}
-                onChange={alterarCampo}
-                disabled={isLoading}
-              />
+                <input
+                  name="email"
+                  type="type" // Mantido como original, mas aceita e-mail normalmente
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={alterarCampo}
+                  disabled={isLoading}
+                />
 
-              <input
-                name="senha"
-                type="password"
-                placeholder="Senha"
-                value={form.senha}
-                onChange={alterarCampo}
-                disabled={isLoading}
-              />
+                <input
+                  name="telefone"
+                  type="text"
+                  placeholder="Telefone / WhatsApp"
+                  value={form.telefone}
+                  onChange={alterarCampo}
+                  disabled={isLoading}
+                />
 
-              <button onClick={cadastrar} disabled={isLoading} className={isLoading ? "loading" : ""}>
-                {isLoading ? "Cadastrando..." : "Cadastrar"}
-              </button>
+                <input
+                  name="senha"
+                  type="password"
+                  placeholder="Senha"
+                  value={form.senha}
+                  onChange={alterarCampo}
+                  disabled={isLoading}
+                />
 
-              <span className="troca-form" onClick={() => !isLoading && setIsLogin(true)}>
-                Já tem uma conta? Ir para login
-              </span>
-            </div>
-          ) : (
-            <div className="form-card">
-              <h2>Login Anunciante</h2>
+                <button onClick={cadastrar} disabled={isLoading} className={isLoading ? "loading" : ""}>
+                  {isLoading ? "Cadastrando..." : "Cadastrar"}
+                </button>
 
-              {/* Mensagens de feedback */}
-              {errorMessage && (
-                <div className="error-message">
-                  {errorMessage}
-                </div>
-              )}
-              
-              {successMessage && (
-                <div className="success-message">
-                  {successMessage}
-                </div>
-              )}
+                <span className="troca-form" onClick={() => !isLoading && setIsLogin(true)}>
+                  Já tem uma conta? Ir para login
+                </span>
+              </div>
+            ) : (
+              <div className="form-card">
+                <h2>Login Anunciante</h2>
 
-              <input
-                name="email"
-                type="email"
-                placeholder="Digite seu Email"
-                value={form.email}
-                onChange={alterarCampo}
-                disabled={isLoading}
-              />
+                {/* Mensagens de feedback */}
+                {errorMessage && (
+                  <div className="error-message">
+                    {errorMessage}
+                  </div>
+                )}
 
-              <input
-                name="senha"
-                type="password"
-                placeholder="Digite sua Senha"
-                value={form.senha}
-                onChange={alterarCampo}
-                disabled={isLoading}
-              />
+                {successMessage && (
+                  <div className="success-message">
+                    {successMessage}
+                  </div>
+                )}
 
-              <button onClick={logar} disabled={isLoading} className={isLoading ? "loading" : ""}>
-                {isLoading ? "Entrando..." : "Entrar no Painel"}
-              </button>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Digite seu Email"
+                  value={form.email}
+                  onChange={alterarCampo}
+                  disabled={isLoading}
+                />
 
-              <span className="troca-form" onClick={() => !isLoading && setIsLogin(false)}>
-                Não tem uma conta? Cadastre-se aqui
-              </span>
-            </div>
-          )}
+                <input
+                  name="senha"
+                  type="password"
+                  placeholder="Digite sua Senha"
+                  value={form.senha}
+                  onChange={alterarCampo}
+                  disabled={isLoading}
+                />
 
+                <button onClick={logar} disabled={isLoading} className={isLoading ? "loading" : ""}>
+                  {isLoading ? "Entrando..." : "Entrar no Painel"}
+                </button>
+
+                <span className="troca-form" onClick={() => !isLoading && setIsLogin(false)}>
+                  Não tem uma conta? Cadastre-se aqui
+                </span>
+              </div>
+            )}
+
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

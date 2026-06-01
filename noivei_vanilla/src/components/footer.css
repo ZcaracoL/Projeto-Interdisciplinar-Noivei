@@ -45,7 +45,7 @@ footer::before {
 .legal-notice {
   background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(20px);
-  padding: 64px 24px;
+  padding: 24px 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 1;

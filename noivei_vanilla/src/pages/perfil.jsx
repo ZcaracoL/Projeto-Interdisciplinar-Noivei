@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import api from "../services/api";
@@ -10,6 +11,7 @@ export default function Perfil() {
     descricao: "",
     imagem: "",
     categoria: "",
+    cidade: "",
   });
 
   const [previewImage, setPreviewImage] = useState(null);
@@ -130,6 +132,7 @@ export default function Perfil() {
             descricao: meuPerfil.descricao || "",
             imagem: meuPerfil.imagem || "",
             categoria: meuPerfil.categoria || "",
+            cidade: meuPerfil.cidade || "",
           });
           setCategoriaInput(meuPerfil.categoria || "");
           if (meuPerfil.imagem) setPreviewImage(meuPerfil.imagem);
@@ -168,7 +171,8 @@ export default function Perfil() {
     return url.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) || 
            url.startsWith('data:image/') ||
            url.includes('cloudinary') ||
-           url.includes('imgur');
+           url.includes('imgur') ||
+           url.includes('images.unsplash');
   }
 
   function addPlan() {
@@ -192,6 +196,17 @@ export default function Perfil() {
     updatedPlans[index][field] = value;
     setPlans(updatedPlans);
   }
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const confirmar = window.confirm("Deseja realmente sair?");
+
+    if (confirmar) {
+      localStorage.removeItem("fornecedorId");
+      navigate("/cadastro");
+    }
+  };
 
   async function saveProfile() {
     if (!fornecedorId) {
@@ -222,6 +237,7 @@ export default function Perfil() {
         descricao: storeData.descricao,
         imagem: storeData.imagem,
         categoria: storeData.categoria,
+        cidade: storeData.cidade,
         planos: plans,
       };
 
@@ -399,6 +415,18 @@ export default function Perfil() {
               onChange={handleStoreChange}
             />
           </div>
+
+          <div className="form-group">
+            <label className="form-label">Cidade</label>
+            <textarea
+              name="cidade"
+              className="form-input"
+              placeholder="Cidade"
+              value={storeData.cidade}
+              onChange={handleStoreChange}
+            />
+          </div>
+
         </div>
 
         {/* SEÇÃO 2: PLANOS */}
@@ -495,6 +523,16 @@ export default function Perfil() {
             ) : (
               <>Salvar Todas as Alterações</>
             )}
+          </button>
+        </div>
+
+        {/* Botão Sair */}
+        <div className="logout-button-wrapper">
+          <button
+            onClick={handleLogout}
+            className="logout-button"
+          >
+            Sair
           </button>
         </div>
       </main>

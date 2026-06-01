@@ -62,11 +62,11 @@ export function rotasFornecedores(app) {
   app.put("/api/perfil/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      const { nomeLoja, descricao, planos } = req.body;
+      const { nomeLoja, descricao, planos, cidade, categoria } = req.body;
 
       const fornecedorAtualizado = await Fornecedor.findByIdAndUpdate(
         id,
-        { nomeLoja, descricao, planos },
+        { nomeLoja, descricao, planos, cidade, categoria },
         { new: true, runValidators: true }
       );
 
