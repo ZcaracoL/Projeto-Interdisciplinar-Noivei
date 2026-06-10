@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import "dotenv/config";
+//import "dotenv/config";
 
 export function conectarBancoMongo() {
-    //const URI_BANCO = "mongodb://localhost:27017/noivei";
-    const URI_BANCO = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=${process.env.DB_USER}`;
+    const URI_BANCO = "mongodb://localhost:27017/noivei";
+    //const URI_BANCO = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=${process.env.DB_USER}`;
 
     mongoose.connection.on("open", () => {
         console.log("Conectado com sucesso ao MongoDB.");
